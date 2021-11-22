@@ -1,0 +1,9 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file alias="hamburger_menu.svg">hamburger_menu.svg</file>
+        <file alias="search_icon.svg">search.svg</file>
+        <file alias="menu_vertical.svg">menu_vertical.svg</file>
+        <file alias="user_icon.svg">user_icon.svg</file>
+    </qresource>
+</RCC>
