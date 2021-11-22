@@ -1,0 +1,20 @@
+{
+    "NavBar":
+    {
+        "color": "#f4f4f4",
+        "background-color": "#202020",
+        "search-bar-border-color": "#313131",
+        "search-bar-background-color": "#121212",
+        "search-button-background-color": "#313131"
+    },
+    "ContentFrame":
+    {
+        "color": "#f4f4f4",
+        "background-color": "#181818"
+    },
+    "VideoResult":
+    {
+        "card-background-color": "#202020",
+        "channel-views-upload-date-color": "#969b9c"
+    }
+}
