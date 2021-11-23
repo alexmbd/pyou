@@ -4,17 +4,15 @@ from pyou_ui.custom_widgets import utils
 
 
 class VideoResultList(QtWidgets.QScrollArea):
-    def __init__(self) -> None:
+    def __init__(self, widget_width: int) -> None:
         super().__init__()
-
-        WIDGET_WIDTH = 310
 
         self.setWidgetResizable(True)
         self.setFrameShape(QtWidgets.QFrame.NoFrame)
 
         self.video_result_frame = utils.add_frame()
         self.video_result_frame_layout = _GridLayout(
-            self, self.video_result_frame, WIDGET_WIDTH)
+            self, self.video_result_frame, widget_width)
         self.setWidget(self.video_result_frame)
 
 

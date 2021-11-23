@@ -19,6 +19,15 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         # Window Attributes
         self.setWindowTitle(title)
         self.setMinimumSize(QtCore.QSize(640, 360))  # 16:9 aspect ratio
+
+        self.screen_size = QtWidgets.QApplication.primaryScreen().size()
+
+        # children_width and children_height take 22.7 percent of the screen width and height
+        # These values are used for the video_result_list widget, the video_result widget and the NavBar widget
+        multiplier = 0.227
+        self.children_width = int(self.screen_size.width() * multiplier)
+        self.children_height = int(self.screen_size.height() * multiplier)
+        self.nav_bar_height = int(self.screen_size.height() * 0.07)
         # ----------------
 
         # Central Widget
@@ -28,7 +37,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         # ----------------
 
         # Nav Bar
-        self.nav_bar = NavBar(60, self.style_sheet)
+        self.nav_bar = NavBar(self.nav_bar_height, self.style_sheet)
         self.nav_bar.search_bar.setFont(utils.set_font("Roboto", 12))
         self.central_layout.addWidget(self.nav_bar)
         # ----------------
@@ -60,7 +69,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         # ----------------
 
     def add_video_result_list(self) -> None:
-        self.video_result_list = VideoResultList()
+        self.video_result_list = VideoResultList(self.children_width)
         self.stack_widget.addWidget(self.video_result_list)
         self.video_result_list.resize(
             QtCore.QSize(self.stack_widget.width(), self.stack_widget.height()))

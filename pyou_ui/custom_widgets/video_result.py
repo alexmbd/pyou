@@ -8,6 +8,8 @@ from pyou_ui.custom_widgets import utils
 class VideoResult(QtWidgets.QFrame):
     def __init__(
             self,
+            children_width: int,
+            children_height: int,
             thumbnail_path: str,
             title: str,
             view_count: str,
@@ -19,20 +21,17 @@ class VideoResult(QtWidgets.QFrame):
             callback_func: Callable[[str], None]) -> None:
         super().__init__()
 
-        CHILDREN_WIDTH = 310
-        CHILDREN_HEIGHT = 174
-
         self.setStyleSheet(style_sheet.VIDEO_RESULT)
 
         self.setFixedSize(QtCore.QSize(
-            CHILDREN_WIDTH, CHILDREN_HEIGHT + (CHILDREN_HEIGHT // 2.75)))
+            children_width, children_height + (children_height // 2.75)))
 
         self.video_result_layout = utils.set_vertical_layout(self)
 
         # Thumbnail Result
         # 16:9 aspect ratio
         self.thumbnail_button = _ClickableLabel(
-            CHILDREN_WIDTH, CHILDREN_HEIGHT, thumbnail_path=thumbnail_path, emitted_value=link)
+            children_width, children_height, thumbnail_path=thumbnail_path, emitted_value=link)
         self.thumbnail_button.setStyleSheet("margin-bottom: 4px;")
         # ----------------
 
@@ -44,8 +43,8 @@ class VideoResult(QtWidgets.QFrame):
                     style_sheet: Any) -> None:
                 super().__init__()
 
-                width_ = CHILDREN_WIDTH - 14
-                height_ = CHILDREN_HEIGHT // 2.75
+                width_ = children_width - 14
+                height_ = children_height // 2.75
 
                 self.setFixedSize(QtCore.QSize(width_, height_))
 
@@ -77,12 +76,12 @@ class VideoResult(QtWidgets.QFrame):
                     QtCore.Qt.AlignLeft)
 
                 self.view_count_button = _ClickableLabel(
-                    (len(view_count) + 72), height_ // 3, text=view_count, 
+                    (len(view_count) + int(width_ * 0.22)), height_ // 3, text=view_count, 
                     tooltip_text=view_count, font=text_font, emitted_value=link)
                 self.view_count_button.setStyleSheet(style_sheet.VIDEO_RESULT_TEXT)
 
                 self.upload_date_button = _ClickableLabel(
-                    (len(upload_date) + 120), height_ // 3, text=upload_date, 
+                    (len(upload_date) + int(width_ * 0.4)), height_ // 3, text=upload_date, 
                     tooltip_text=upload_date, font=text_font, emitted_value=link)
                 self.upload_date_button.setStyleSheet(style_sheet.VIDEO_RESULT_TEXT)
 

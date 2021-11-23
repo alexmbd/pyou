@@ -48,6 +48,8 @@ class MainWindow(MainWindow_UI):
 
         for item in self.results:
             result = self.video_result(
+                children_width=self.children_width,
+                children_height=self.children_height,
                 thumbnail_path=item["thumbnail"],
                 title=item["title"],
                 view_count=item["viewCount"]["short"],
