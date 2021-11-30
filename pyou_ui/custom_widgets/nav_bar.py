@@ -7,7 +7,7 @@ from pyou_ui.img import img
 
 
 class NavBar(QtWidgets.QFrame):
-    def __init__(self, height_: int, style_sheet: Any) -> None:
+    def __init__(self, height_: int, screen_width: int, style_sheet: Any) -> None:
         super().__init__()
 
         # Frame Attributes
@@ -18,15 +18,14 @@ class NavBar(QtWidgets.QFrame):
         self.nav_bar_layout = utils.set_horizontal_layout(self)
 
         # Left Nav Bar
-        # A width of 80 is perfect for the left nav bar
-        self.left_nav_bar = utils.add_frame(set_width=80)
+        self.left_nav_bar = utils.add_frame(set_width=int(screen_width * (80/1366)))
         self.left_nav_bar_layout = utils.set_horizontal_layout(
             self.left_nav_bar)
 
         # Hamburger Menu
         self.hamburger_menu = utils.add_button(
-            set_height=height_ - 20, set_width=26,
-            icon_path=":/hamburger_menu.svg", icon_size=26,
+            set_height=height_//2, set_width=height_//2.2,
+            icon_path=":/hamburger_menu.svg", icon_size=height_//2.2,
             icon_color=style_sheet.NAVBAR_ICON_COLOR)
 
         self.left_nav_bar_layout.addWidget(self.hamburger_menu)
@@ -56,8 +55,7 @@ class NavBar(QtWidgets.QFrame):
         # ----------------
 
         # Right Nav Bar
-        # A width of 100 is perfect for the right nav bar
-        self.right_nav_bar = utils.add_frame(set_width=100)
+        self.right_nav_bar = utils.add_frame(set_width=int(screen_width * (80/1366)))
         self.right_nav_bar_layout = utils.set_horizontal_layout(
             self.right_nav_bar)
 

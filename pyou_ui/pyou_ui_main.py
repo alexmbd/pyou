@@ -43,7 +43,7 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         # ----------------
 
         # Nav Bar
-        self.nav_bar = NavBar(self.nav_bar_height, self.style_sheet)
+        self.nav_bar = NavBar(self.nav_bar_height, self.screen_size.width(), self.style_sheet)
         self.nav_bar.search_bar.setFont(utils.set_font("Roboto", 12))
         self.central_layout.addWidget(self.nav_bar)
         # ----------------
