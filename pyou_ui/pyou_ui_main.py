@@ -22,12 +22,18 @@ class MainWindow_UI(QtWidgets.QMainWindow):
 
         self.screen_size = QtWidgets.QApplication.primaryScreen().size()
 
-        # children_width and children_height take 22.7 percent of the screen width and height
-        # These values are used for the video_result_list widget, the video_result widget and the NavBar widget
-        multiplier = 0.227
-        self.children_width = int(self.screen_size.width() * multiplier)
-        self.children_height = int(self.screen_size.height() * multiplier)
-        self.nav_bar_height = int(self.screen_size.height() * 0.07)
+        # children_width and children_height take 22.656 percent of the screen width and height.
+        # 0.22656 is obtained from 174/768 where 174 is an arbitrary number and 768 is from a ...
+        # ... common screen resolution of 1366x768 where 1366 is the width and 768 is the height.
+        # These values are used for the video_result_list widget and the video_result widget.
+        self.children_width = int(self.screen_size.width() * (174/768))
+        self.children_height = int(self.screen_size.height() * (174/768))
+
+        # The same reason goes for the nav_bar_multiplier.
+        # Its value is obtained from 50/768 where 50 is an arbitrary number and 768 is from a ...
+        # ... common screen resolution of 1366x768 where 1366 is the width and 768 is the height.
+        # This value is used for the NavBar widget.
+        self.nav_bar_height = int(self.screen_size.height() * (50/768))
         # ----------------
 
         # Central Widget

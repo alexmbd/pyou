@@ -41,13 +41,13 @@ class NavBar(QtWidgets.QFrame):
 
         # Search Bar
         self.search_bar = QtWidgets.QLineEdit()
-        self.search_bar.setFixedHeight(height_ - 20)
+        self.search_bar.setFixedHeight(int(height_ * (5/7)))
         self.search_bar.setPlaceholderText("Search")
 
         # Search Button
         self.search_button = utils.add_button(
-            set_height=height_ - 20, icon_path=":/search_icon.svg",
-            icon_size=20, icon_color=style_sheet.NAVBAR_ICON_COLOR,
+            set_height=int(height_ * (5/7)), icon_path=":/search_icon.svg",
+            icon_size=int(height_ * (5/14)), icon_color=style_sheet.NAVBAR_ICON_COLOR,
             style_sheet=style_sheet.NAVBAR_SEARCH_BUTTON_BG_COLOR)
 
         self.mid_nav_bar_layout.addWidget(self.search_bar)
@@ -63,14 +63,14 @@ class NavBar(QtWidgets.QFrame):
 
         # Vertical Menu
         self.vertical_menu = utils.add_button(
-            set_height=height_ - 20, set_width=26,
-            icon_path=":/menu_vertical.svg", icon_size=26,
+            set_height=height_//2, set_width=height_//2.2,
+            icon_path=":/menu_vertical.svg", icon_size=height_//2.2,
             icon_color=style_sheet.NAVBAR_ICON_COLOR)
 
         # User Button
         self.user_button = utils.add_button(
-            set_height=height_ - 20, set_width=26,
-            icon_path=":/user_icon.svg", icon_size=26,
+            set_height=height_//2, set_width=height_//2.2,
+            icon_path=":/user_icon.svg", icon_size=height_//2.2,
             icon_color=style_sheet.NAVBAR_ICON_COLOR)
 
         self.right_nav_bar_layout.addWidget(
