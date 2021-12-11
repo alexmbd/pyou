@@ -18,10 +18,13 @@ class MainWindow(MainWindow_UI):
         self.nav_bar.search_bar.returnPressed.connect(self.to_load_page)
         self.nav_bar.search_button.clicked.connect(self.to_load_page)
 
+        self.video_frame.now_playing.connect(lambda: self.stack_widget.setCurrentWidget(self.video_frame))
+        self.video_frame.set_fullscreen.connect(self.set_video_fullscreen)
+
     def to_load_page(self) -> None:
         query = self.nav_bar.search_bar.text()
         self.stack_widget.setCurrentWidget(self.load_page)
-        self.remove_video_frame()
+        self.video_frame.stop()
         self.waiting_spinner.start()
         self.start_search_thread(query, "new")
 
@@ -64,9 +67,13 @@ class MainWindow(MainWindow_UI):
         self.stack_widget.setCurrentWidget(self.video_result_list)
 
     def selected_result(self, value: str) -> None:
-        # self.waiting_spinner.start()
-        self.add_video_frame(value, 720)
-        self.stack_widget.setCurrentWidget(self.video_frame)
+        self.stack_widget.setCurrentWidget(self.load_page)
+        self.waiting_spinner.start()
+        self.video_frame.play(value, 720)
+
+    def set_video_fullscreen(self, to_hide: bool) -> None:
+        self.nav_bar.setHidden(to_hide)
+        self.showFullScreen() if to_hide else self.showMaximized()
 
 
 class SearchWorker(QtCore.QObject):

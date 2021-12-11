@@ -68,6 +68,11 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         self.waiting_spinner.move(self.load_page.rect().center())
         # ----------------
 
+        # Video Frame
+        self.video_frame = VideoFrame()
+        self.stack_widget.addWidget(self.video_frame)
+        # ----------------
+
         # Video Result List
         self.video_result_list = VideoResultList(self.children_width)
         self.stack_widget.addWidget(self.video_result_list)
@@ -80,16 +85,6 @@ class MainWindow_UI(QtWidgets.QMainWindow):
 
     def add_video_result(self, video_result: VideoResult) -> None:
         self.video_result_list.video_result_frame_layout.addWidget(video_result)
-
-    def add_video_frame(self, url: str, quality: int) -> None:
-        self.video_frame = VideoFrame(url, quality)
-        self.stack_widget.addWidget(self.video_frame)
-
-    def remove_video_frame(self) -> None:
-        if hasattr(self, "video_frame"):
-            self.video_frame.player.terminate()
-            self.stack_widget.removeWidget(self.video_frame)
-            self.video_frame.deleteLater()
 
     def resizeEvent(self, event: QtGui.QResizeEvent) -> None:
         # Search Bar
