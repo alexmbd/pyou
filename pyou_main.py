@@ -21,7 +21,6 @@ class MainWindow(MainWindow_UI):
     def to_load_page(self) -> None:
         query = self.nav_bar.search_bar.text()
         self.stack_widget.setCurrentWidget(self.load_page)
-        self.remove_video_result_list()
         self.remove_video_frame()
         self.waiting_spinner.start()
         self.start_search_thread(query, "new")
@@ -44,7 +43,7 @@ class MainWindow(MainWindow_UI):
         self.results = results
 
     def display_results(self) -> None:
-        self.add_video_result_list()
+        self.video_result_list.video_result_frame_layout.clear_widget()
 
         for item in self.results:
             result = self.video_result(

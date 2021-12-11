@@ -28,17 +28,21 @@ class _GridLayout(QtWidgets.QGridLayout):
 
     def addWidget(self, widget: QtWidgets.QWidget) -> None:
         if len(self.widget_list) == 0:
-            self._add_new_row(widget, self.rowCount() - 1)
+            self._add_new_row(widget, 0)
             return
 
         current_row = len(self.widget_list) - 1
         if not self._can_add_to_current_row(current_row):
-            self._add_new_row(widget, self.rowCount() + 1)
+            self._add_new_row(widget, current_row + 1)
             return
 
         self.widget_list[current_row].append(widget)
         super().addWidget(
-            widget, self.rowCount() - 1, len(self.widget_list[current_row]))
+            widget, current_row, len(self.widget_list[current_row]))
+
+    def clear_widget(self) -> None:
+        self.widget_list = []
+        self._remove_widgets()
 
     def update_widget(self) -> None:
         self._remove_widgets()

@@ -69,20 +69,14 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         # ----------------
 
         # Video Result List
-        self.add_video_result_list()
-        self.video_result = VideoResult
-        self.stack_widget.setCurrentWidget(self.video_result_list)
-        # ----------------
-
-    def add_video_result_list(self) -> None:
         self.video_result_list = VideoResultList(self.children_width)
         self.stack_widget.addWidget(self.video_result_list)
         self.video_result_list.resize(
             QtCore.QSize(self.stack_widget.width(), self.stack_widget.height()))
 
-    def remove_video_result_list(self) -> None:
-        self.stack_widget.removeWidget(self.video_result_list)
-        self.video_result_list.deleteLater()
+        self.video_result = VideoResult
+        self.stack_widget.setCurrentWidget(self.video_result_list)
+        # ----------------
 
     def add_video_result(self, video_result: VideoResult) -> None:
         self.video_result_list.video_result_frame_layout.addWidget(video_result)
@@ -111,8 +105,9 @@ class MainWindow_UI(QtWidgets.QMainWindow):
         # ----------------
 
         # Video Result List
-        if self.stack_widget.currentIndex() != 0:
-            self.video_result_list.video_result_frame_layout.update_widget()
+        self.video_result_list.video_result_frame_layout.update_widget()
+        self.video_result_list.resize(
+            QtCore.QSize(self.stack_widget.width(), self.stack_widget.height()))
         # ----------------
 
     @staticmethod
